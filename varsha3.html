@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Varsha 💕</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:"Inter",sans-serif;
+  background:linear-gradient(135deg,#ffd6e8,#fff0f6);
+  color:#5a2a44;
+  overflow-x:hidden;
+}
+
+/* SOFT GRAIN */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url("https://grainy-gradients.vercel.app/noise.png");
+  opacity:0.12;
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* MUSIC BUTTON */
+.music{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  background:#ff85b3;
+  color:white;
+  padding:12px 22px;
+  border-radius:40px;
+  cursor:pointer;
+  font-size:.9rem;
+  z-index:1000;
+}
+
+/* HERO */
+header{
+  height:100vh;
+  background:
+    linear-gradient(rgba(255,182,213,.4),rgba(255,182,213,.6)),
+    url("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGR0aHVkY2R2Z2R1NDR1d2Y1YWVnM2l6bDNnNG5rNzY1NXh4aW95aiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MDJ9IbxxvDUQM/giphy.gif")
+    center/cover;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+}
+
+header h1{
+  font-family:"Playfair Display",serif;
+  font-size:4rem;
+  letter-spacing:4px;
+}
+
+header p{
+  margin-top:16px;
+  max-width:600px;
+  font-size:1.2rem;
+}
+
+/* SECTIONS */
+section{
+  padding:110px 12%;
+}
+
+.editorial{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.editorial img{
+  width:100%;
+  border-radius:20px;
+}
+
+h2{
+  font-family:"Playfair Display",serif;
+  font-size:2.7rem;
+  margin-bottom:20px;
+}
+
+p{
+  font-size:1.05rem;
+  line-height:1.9;
+}
+
+/* QUOTE */
+.quote{
+  background:#ff85b3;
+  color:white;
+  text-align:center;
+  padding:140px 20px;
+}
+
+.quote h2{
+  max-width:850px;
+  margin:auto;
+  font-size:3rem;
+}
+
+/* VALENTINE */
+.valentine{text-align:center}
+
+.handwritten{
+  font-family:"Pacifico",cursive;
+  font-size:1.6rem;
+  color:#ff4d88;
+  margin-bottom:20px;
+}
+
+button{
+  padding:16px 52px;
+  border-radius:50px;
+  border:none;
+  background:#ff4d88;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+button:hover{transform:scale(1.1)}
+
+.message{
+  display:none;
+  margin-top:35px;
+  font-size:1.6rem;
+  font-family:"Playfair Display",serif;
+  color:#ff4d88;
+}
+
+/* HEARTS */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
+}
+
+footer{
+  text-align:center;
+  padding:50px;
+  font-size:.9rem;
+  color:#a04a6a;
+}
+
+@media(max-width:900px){
+  .editorial{grid-template-columns:1fr}
+  header h1{font-size:2.6rem}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎶 WORKING ROYALTY-FREE MUSIC -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/14/audio_8f8cfc9e41.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music" onclick="toggleMusic()">🎶 Play Music</div>
+
+<header>
+  <h1>VARSHA</h1>
+  <p>A little pink, a little magic, and one important question 💕</p>
+</header>
+
+<section class="editorial">
+  <div>
+    <h2>The Cutest Story</h2>
+    <p>
+      Some people make everything feel softer —
+      like pastel skies, gentle smiles,
+      and moments you wish you could keep forever.
+    </p>
+  </div>
+
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTF4NGV3ZXk3eTlyazJzOW9nYjZpNXByNGx3Z2d2ZXJyd2o2cGZxNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26FLdmIp6wJr91JAI/giphy.gif">
+</section>
+
+<section class="quote">
+  <h2>
+    “Bade achhe lagte hain…  
+    yeh pal, yeh muskaan, aur tum 💗”
+  </h2>
+</section>
+
+<section class="valentine">
+  <div class="handwritten">One tiny question 💌</div>
+  <h2>Will you be my Valentine?</h2>
+  <button onclick="yes()">Yes 💖</button>
+  <div class="message" id="msg">You just made my heart very happy 🥹💞</div>
+</section>
+
+<footer>
+  Made with way too many feelings 💕
+</footer>
+
+<script>
+const music=document.getElementById("music");
+let playing=false;
+music.volume=0.4;
+
+function toggleMusic(){
+  if(!playing){
+    music.play();
+    document.querySelector(".music").innerText="⏸ Pause Music";
+  }else{
+    music.pause();
+    document.querySelector(".music").innerText="🎶 Play Music";
+  }
+  playing=!playing;
+}
+
+function yes(){
+  document.getElementById("msg").style.display="block";
+  for(let i=0;i<25;i++)createHeart();
+}
+
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*18+14)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+</script>
+
+</body>
+</html>
